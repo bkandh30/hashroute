@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p tsconfig.json --outDir ./dist && tsc-alias",
+    "pull": "drizzle-kit pull --config drizzle.config.ts",
+    "migrate": "drizzle-kit migrate --config drizzle.config.ts",
+    "generate": "drizzle-kit generate --config drizzle.config.ts",
+    "studio": "drizzle-kit studio --config drizzle.config.ts"
   },
   "keywords": [],
   "author": "",
