@@ -1,69 +1,140 @@
-# React + TypeScript + Vite
+# TanStack React + tRPC + Cloudflare Worker Template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This template provides a fully integrated setup of TanStack React Router, tRPC, and Cloudflare Workers, allowing you to build full-stack applications that run on the edge.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [TanStack Router](https://tanstack.com/router) for type-safe, powerful routing
+- [TanStack Query](https://tanstack.com/query) for data fetching and caching
+- [tRPC](https://trpc.io/) for end-to-end typesafe APIs
+- [Cloudflare Workers](https://workers.cloudflare.com/) for edge computing
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [TypeScript](https://www.typescriptlang.org/) for type safety
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- [Node.js](https://nodejs.org/) (v18 or later)
+- [pnpm](https://pnpm.io/) (v7 or later)
+- [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/) for Cloudflare Workers development
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Install dependencies:
+
+```bash
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Start the development server:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm run dev
 ```
+
+This will start the local development server at http://localhost:3000.
+
+## Cloudflare Worker Configuration
+
+### Service Bindings and TypeScript
+
+This template includes type definitions for Cloudflare Worker bindings. When adding service bindings or other Cloudflare resources, you should:
+
+1. Generate TypeScript types for your bindings:
+
+```bash
+pnpm run cf-typegen
+```
+
+This will create or update typings for your Cloudflare Worker environment.
+
+2. Update the `Service Bindings` interface in `service-bindings.d.ts`:
+
+```typescript
+interface ServiceBindings extends Env {
+  // You can add Additional typesame bindings here
+}
+```
+
+3. Use the typed bindings in your tRPC context and procedures:
+
+```typescript
+// In context.ts
+export async function createContext({
+  req,
+  env,
+  workerCtx,
+}: {
+  req: Request;
+  env: ServiceBindings; // This will include your typed bindings
+  workerCtx: ExecutionContext;
+}) {
+  return {
+    req,
+    env,
+    workerCtx,
+  };
+}
+
+// In your tRPC procedures
+export const myProcedure = t.procedure.query(({ ctx }) => {
+  // Access typed bindings
+  const value = await ctx.env.MY_KV.get("some-key");
+  return { value };
+});
+```
+
+## Deployment
+
+To deploy your application to Cloudflare Workers:
+
+1. Build the application:
+
+```bash
+pnpm run build
+```
+
+2. Deploy to Cloudflare:
+
+```bash
+pnpm run deploy
+```
+
+This will deploy your application to your Cloudflare Workers account. Make sure you have configured Wrangler with your Cloudflare account credentials.
+
+### Configuration
+
+You can customize your Cloudflare Worker deployment by editing the `wrangler.toml` file. Key configurations include:
+
+- `name`: The name of your worker
+- `compatibility_date`: The Cloudflare Workers compatibility date
+- `routes`: URL pattern matching for your worker
+- `site`: Configuration for serving static assets
+
+## Project Structure
+
+```
+├── src/                  # Frontend React application
+│   ├── routes/           # TanStack router routes
+│   ├── trpcClient.ts     # tRPC client setup
+│   └── main.tsx          # Application entry point
+│
+├── worker/               # Cloudflare Worker backend
+│   ├── index.ts          # Worker entry point
+│   └── trpc/             # tRPC router and procedures
+│       ├── context.ts    # tRPC context creation
+│       ├── router.ts     # Main tRPC router
+│       └── routers/      # Individual tRPC route handlers
+│
+├── public/               # Static assets
+└── wrangler.toml         # Cloudflare Worker configuration
+```
+
+## Additional Resources
+
+- [TanStack Router Documentation](https://tanstack.com/router/latest/docs/overview)
+- [TanStack Query Documentation](https://tanstack.com/query/latest/docs/react/overview)
+- [tRPC Documentation](https://trpc.io/docs)
+- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
