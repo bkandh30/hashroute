@@ -48,6 +48,9 @@ importers:
       '@types/node':
         specifier: ^24.10.1
         version: 24.10.1
+      prettier:
+        specifier: ^3.7.3
+        version: 3.7.3
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -3131,6 +3134,11 @@ packages:
   prepend-http@1.0.4:
     resolution: {integrity: sha512-PhmXi5XmoyKw1Un4E+opM2KcsJInDvKyuOumcjjw3waw86ZNjHwVUOOWLc4bCzLdcKNaWBH9e99sbWzDQsVaYg==}
     engines: {node: '>=0.10.0'}
+
+  prettier@3.7.3:
+    resolution: {integrity: sha512-QgODejq9K3OzoBbuyobZlUhznP5SKwPqp+6Q6xw6o8gnhr4O85L2U915iM2IDcfF2NPXVaM9zlo9tdwipnYwzg==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   private@0.1.8:
     resolution: {integrity: sha512-VvivMrbvd2nKkiG38qjULzlc+4Vx4wm/whI9pQD35YrARNnhxeiRktSOhSukRLFNlzg6Br/cJPet5J/u19r/mg==}
@@ -7127,6 +7135,8 @@ snapshots:
       source-map-js: 1.2.1
 
   prepend-http@1.0.4: {}
+
+  prettier@3.7.3: {}
 
   private@0.1.8: {}
 
