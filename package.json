@@ -1,0 +1,16 @@
+{
+  "name": "hashroute",
+  "version": "1.0.0",
+  "description": "Link management at scale - A full-stack Cloudflare application",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.18.3",
+  "devDependencies": {
+    "@types/node": "^25.0.0",
+    "typescript": "^5.9.3"
+  }
+}
