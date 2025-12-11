@@ -4,7 +4,8 @@
   "description": "Shared data package for data helper functions.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "pnpm exec prettier . --write",
+    "format:check": "pnpm exec prettier . --check"
   },
   "keywords": [],
   "author": "",
@@ -25,7 +26,14 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20251211.0",
     "@types/node": "^25.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.49.0",
+    "@typescript-eslint/parser": "^8.49.0",
     "drizzle-kit": "^0.31.8",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.7.4",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "tsc-alias": "^1.8.16",
     "wrangler": "^4.54.0"
   }
