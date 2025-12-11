@@ -2,6 +2,8 @@
 
 In this SaaS, I'm going to use a monorepo to handler scale. The time taken for initial scaffolding of the monorepo is later going to be worth it for the future ease of development.
 
+![Hashroute Architecture](./hashrouteDesign.png)
+
 # Packages
 
 Packages are self contained projects living in a single repository to enable code sharing, modularity, and streamlined management.
