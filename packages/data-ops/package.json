@@ -1,5 +1,5 @@
 {
-  "name": "data-ops",
+  "name": "@repo/data-ops",
   "version": "1.0.0",
   "description": "Shared data package for data helper functions.",
   "main": "index.js",

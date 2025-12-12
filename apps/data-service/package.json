@@ -1,0 +1,31 @@
+{
+  "name": "data-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.18.3",
+  "dependencies": {
+    "@repo/data-ops": "workspace:*",
+    "ai": "^5.0.112",
+    "hono": "^4.10.8",
+    "moment": "^2.30.1",
+    "uuid": "^13.0.0",
+    "workers-ai-provider": "^2.0.0",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@cloudflare/puppeteer": "^1.0.4",
+    "@cloudflare/vitest-pool-workers": "^0.10.15",
+    "@types/node": "^25.0.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.15",
+    "wrangler": "^4.54.0"
+  }
+}
