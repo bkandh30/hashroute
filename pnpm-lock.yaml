@@ -28,7 +28,7 @@ importers:
         version: 12.5.0
       drizzle-orm:
         specifier: ^0.45.1
-        version: 0.45.1(@cloudflare/workers-types@4.20251211.0)(better-sqlite3@12.5.0)(kysely@0.28.8)
+        version: 0.45.1(@cloudflare/workers-types@4.20251211.0)(@types/better-sqlite3@7.6.13)(better-sqlite3@12.5.0)(kysely@0.28.8)
       kysely:
         specifier: ^0.28.8
         version: 0.28.8
@@ -51,6 +51,9 @@ importers:
       '@cloudflare/workers-types':
         specifier: ^4.20251211.0
         version: 4.20251211.0
+      '@types/better-sqlite3':
+        specifier: ^7.6.13
+        version: 7.6.13
       '@types/node':
         specifier: ^25.0.0
         version: 25.0.0
@@ -834,6 +837,9 @@ packages:
 
   '@standard-schema/spec@1.0.0':
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
+
+  '@types/better-sqlite3@7.6.13':
+    resolution: {integrity: sha512-NMv9ASNARoKksWtsq/SHakpYAYnhBrQgGD8zkLYk/jaK8jUGn08CfEdTRgYhMypUQAfzSP8W6gNLe0q19/t4VA==}
 
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
@@ -2449,6 +2455,10 @@ snapshots:
 
   '@standard-schema/spec@1.0.0': {}
 
+  '@types/better-sqlite3@7.6.13':
+    dependencies:
+      '@types/node': 25.0.0
+
   '@types/estree@1.0.8': {}
 
   '@types/json-schema@7.0.15': {}
@@ -2734,9 +2744,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.45.1(@cloudflare/workers-types@4.20251211.0)(better-sqlite3@12.5.0)(kysely@0.28.8):
+  drizzle-orm@0.45.1(@cloudflare/workers-types@4.20251211.0)(@types/better-sqlite3@7.6.13)(better-sqlite3@12.5.0)(kysely@0.28.8):
     optionalDependencies:
       '@cloudflare/workers-types': 4.20251211.0
+      '@types/better-sqlite3': 7.6.13
       better-sqlite3: 12.5.0
       kysely: 0.28.8
 
