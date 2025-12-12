@@ -1,14 +1,14 @@
-import { drizzle } from "drizzle-orm/d1";
+import { drizzle } from 'drizzle-orm/d1';
 
 let db: ReturnType<typeof drizzle>;
 
 export function initDb(bindingDb: D1Database) {
-	db = drizzle(bindingDb);
+  db = drizzle(bindingDb);
 }
 
 export function getDb() {
-	if (!db) {
-		throw new Error("Database not initialized");
-	}
-	return db;
+  if (!db) {
+    throw new Error('Database not initialized');
+  }
+  return db;
 }
